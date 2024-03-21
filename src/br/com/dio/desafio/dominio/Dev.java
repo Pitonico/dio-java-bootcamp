@@ -10,9 +10,9 @@ public class Dev {
     private Set<Conteudo> conteudoInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudoConcluidos = new LinkedHashSet<>();
 
-    public void inscreverBootCamp(Bootcamp bootcamp) {
+    public void subscribeBootCamp(Bootcamp bootcamp) {
         this.conteudoInscritos.addAll(bootcamp.getConteudos());
-        bootcamp.getDevsInscritos().add(this);
+        bootcamp.addDev(this);
     }
 
     public void progredir(){
@@ -24,6 +24,7 @@ public class Dev {
             System.err.println("Você não esta matriculado em nenhum conteudo");
         }
     }
+
     public double calcularTotalXP(){
         return this.conteudoConcluidos
                 .stream()
@@ -66,5 +67,12 @@ public class Dev {
     @Override
     public int hashCode() {
         return Objects.hash(nome, conteudoInscritos, conteudoConcluidos);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " Nome: " + nome +
+                " }";
     }
 }
